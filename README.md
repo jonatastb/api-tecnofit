@@ -27,7 +27,7 @@ cp .env.example .env
 
 ### 4. Configurar o banco de dados
 
-No arquivo .env, configure as credenciais do banco de dados conforme sua escolha. No meu caso utilizei SQLite, para manter o foco na funcionalidade da API e não na configuração do banco.
+No arquivo .env, configure as credenciais do banco de dados conforme sua escolha. No meu caso utilizei SQLite, para manter o foco na funcionalidade da API e não na configuração do banco. Se for utilizar SQLite, basta alterar `mysql` para `sqlite`.
 
 ```bash
 DB_CONNECTION=mysql
@@ -45,6 +45,8 @@ php artisan key:generate
 ```
 
 ### 6. Executar as migrações e seeders do banco de dados
+
+Se estiver utilizando SQLite, o Laravel ira perguntar se você deseja criar o `database.sqlite`, no caso do Laravel não criar sozinho é só criar manualmente na pasta `database/`
 
 ```bash
 php artisan migrate --seed
