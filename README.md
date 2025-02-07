@@ -20,7 +20,7 @@
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/seu-projeto.git
+git clone https://github.com/jonatastb/api-tecnofit
 cd seu-projeto
 ```
 
