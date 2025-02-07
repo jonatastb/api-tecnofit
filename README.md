@@ -1,6 +1,6 @@
 # Ranking Tecnofit - API
 
-**Descrição**: Este é um projeto de uma API de Rankings, ele foi feito em Laravel 11 e SQLite. Com auntenticação *sanctum* para as rotas. Sua funcionalidade principal é mostrar o ranking de usuários já cadastrados no banco.
+**Descrição**: Este é um projeto de uma API de Rankings, foi desenvolvido com Laravel 11 e SQLite. Com autenticação *sanctum* para proteger as rotas. A principal funcionalidade é exibir o ranking de usuários cadastrados no banco de dados.
 
 ---
 
@@ -38,7 +38,7 @@ cp .env.example .env
 
 ### 4. Configurar o banco de dados
 
-No .env altere para o banco de dados de sua escolha. No meu caso utilizei SQLite, para manter o foco na funcionalidade da API e não na configuração do banco.
+No arquivo .env, configure as credenciais do banco de dados conforme sua escolha. No meu caso utilizei SQLite, para manter o foco na funcionalidade da API e não na configuração do banco.
 
 ```bash
 DB_CONNECTION=mysql
@@ -70,7 +70,7 @@ php artisan serve
 --- 
 ## Autenticação
 
-Escolha seu programa de testes de API preferido e insira as rotas e configurações nos headers e body(se necessário). Ao final vou deixar um exemplo básico no Postman.
+Escolha seu programa de testes de API preferido e insira as rotas e configurações nos headers e body(se necessário).
 
 ### Login (POST)
 
@@ -90,16 +90,28 @@ No seeder o admin já é criado com essas informações.
   "password": "123456"
 }
 ```
-### Logout (POST)
 
-A rota de logout permite que o usuário desconecte-se, invalidando o token de autenticação atual.
-
-**Endpoint**: `/api/logout`
-
-**Método**: `POST`
-
-**Cabeçalhos**: 
--- **Authorization** `Bearer TOKEN_GERADO_NO_LOGIN`  
+**Resposta bem sucedida:**
+```json
+{
+    "success": true,
+    "data": {
+        "user": {
+            "id": 4,
+            "name": "Admin",
+            "email": "admin@teste.com"
+        },
+        "token": "TOKEN"
+    },
+    "message": "Login bem-sucedido!"
+}
+```
+**Resposta caso as credenciais estejam incorretas:** 
+```json
+{
+    "error": "Credenciais inválidas"
+}
+```
 
 ### Logout (POST)
 
@@ -113,11 +125,26 @@ A rota de logout permite que o usuário desconecte-se, invalidando o token de au
  ```bash
     Authorization: `Bearer TOKEN_GERADO_NO_LOGIN` (necessário para autenticação de logout)
  ```
+**Resposta bem sucedida:**
+```json
+{
+    "message": "Logout bem-sucedido!"
+}
+```
+**Resposta mal sucedida:**
+```json 
+{
+    "success": false,
+    "errors": {
+        "error": "Not Found",
+        "message": "Esta rota não existe ou você não tem permissao."
+    }
+}
 
 ## Ranking
 
 ### Ranking - Listar (GET)
-A rota para retornar todos os movimentos e Recordes pessoais.
+A rota retorna todos os movimentos e recordes pessoais.
 
 **Endpoint**: `/api/ranking`
 
@@ -127,6 +154,33 @@ A rota para retornar todos os movimentos e Recordes pessoais.
  ```bash
     Authorization: `Bearer TOKEN_GERADO_NO_LOGIN` (necessário para autenticação) 
  ```
+**Resposta bem sucedida:**
+```json
+{
+    "success": true,
+    "data": {
+        "Nome do Movimento": [
+            {
+                "user": "string",
+                "value": integer,
+                "date": "string",
+                "position": integer
+            },
+        ],
+    },
+    "message": "Todos os recordes dos movimentos"
+}
+```
+**Resposta mal sucedida:**
+```json 
+{
+    "success": false,
+    "errors": {
+        "error": "Not Found",
+        "message": "Esta rota não existe ou você não tem permissao."
+    }
+}
+```
 
 ### Ranking - Detalhes de um movimento (GET)
 A rota para obter os detalhes de um movimento específico, passando o ID do movimento como parâmetro.
@@ -143,11 +197,38 @@ A rota para obter os detalhes de um movimento específico, passando o ID do movi
  ```bash
     Authorization: `Bearer TOKEN_GERADO_NO_LOGIN` (necessário para autenticação) 
  ```
+**Resposta bem sucedida:**
+```json
+{
+    "success": true,
+    "data": {
+        "Nome do Movimento": [
+            {
+                "user": "string",
+                "value": integer,
+                "date": "string",
+                "position": integer
+            },
+        ],
+    },
+    "message": "Todos os recordes dos movimentos"
+}
+```
+**Resposta mal sucedida:**
+```json 
+{
+    "success": false,
+    "errors": {
+        "error": "Not Found",
+        "message": "Esta rota não existe ou você não tem permissao."
+    }
+}
+```
 
 ---
 ## Observações finais
 
-A descrição do teste mencionava que deveríamos entregar o projeto em um estado que considerássemos pronto para produção. No meu entendimento, uma aplicação que lida com dados dos usuários precisa de um sistema de autenticação. No futuro, diversos aspectos poderiam ser aprimorados, como um login específico para que os usuários visualizem suas pontuações e a implementação de permissões mais detalhadas. No entanto, acredito que entreguei um projeto alinhado ao que foi solicitado, com algumas melhorias adicionais. Qualquer dúvida entre em contato por `jonatas.bueno@outlook.com` ou `(41) 9 8715-6232` 
+A descrição do teste mencionava que deveríamos entregar o projeto em um estado que considerássemos pronto para produção. No meu entendimento, uma aplicação que lida com dados dos usuários precisa de um sistema de autenticação. No futuro, diversos aspectos poderiam ser aprimorados, como um login específico para que os usuários visualizem suas pontuações e a implementação de permissões mais detalhadas. No entanto, acredito que entreguei um projeto alinhado ao que foi solicitado, com algumas melhorias adicionais. Qualquer dúvida entre em contato com o desenvolvedor.
 
 
 
