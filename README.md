@@ -1,66 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Ranking Tecnofit - API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Descrição**: Este é um projeto de uma API de Rankings, ele foi feito em Laravel 11 e SQLite. Com auntenticação *sanctum* para as rotas. Sua funcionalidade principal é mostrar o ranking de usuários já cadastrados no banco.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tecnologias Utilizadas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **PHP** (versão 8.x ou superior)
+- **Laravel** (versão 11.x)
+- **SQLite** (ou o banco de dados de sua escolha)
+- **Composer** (para gerenciar dependências)
+- **Node.js** (caso tenha dependências de frontend com JavaScript)
+- **Vue.js** ou **React** (dependendo do seu stack de frontend, se houver)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Instalação
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1. Clonar o repositório
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+git clone https://github.com/seu-usuario/seu-projeto.git
+cd seu-projeto
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. Instalar as dependências do PHP
 
-## Laravel Sponsors
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 3. Configuração do ambiente
 
-### Premium Partners
+```bash
+cp .env.example .env
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 4. Configurar o banco de dados
 
-## Contributing
+No .env altere para o banco de dados de sua escolha. No meu caso utilizei SQLite, para manter o foco na funcionalidade da API e não na configuração do banco.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nome_do_banco
+DB_USERNAME=usuario
+DB_PASSWORD=senha
+```
+### 5. Gerar a chave de aplicativo
 
-## Code of Conduct
+```bash
+php artisan key:generate
+```
+### 6. Executar as migrações e seeders do banco de dados
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan migrate --seed
+```
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Rodando o Projeto
+```bash
+php artisan serve
+```
 
-## License
+--- 
+## Autenticação
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Escolha seu programa de testes de API preferido e insira as rotas e configurações nos headers e body(se necessário). Ao final vou deixar um exemplo básico no Postman.
+
+### Login (POST)
+
+A rota de login permite que um usuário se autentique e obtenha um **token** para realizar operações autenticadas.
+
+**Endpoint**: `/api/login`
+
+**Método**: `POST`
+
+**Corpo da Requisição**:
+
+No seeder o admin já é criado com essas informações.
+
+```json
+{
+  "email": "admin@teste.com", 
+  "password": "123456"
+}
+```
+### Logout (POST)
+
+A rota de logout permite que o usuário desconecte-se, invalidando o token de autenticação atual.
+
+**Endpoint**: `/api/logout`
+
+**Método**: `POST`
+
+**Cabeçalhos**: 
+-- **Authorization** `Bearer TOKEN_GERADO_NO_LOGIN`  
+
+### Logout (POST)
+
+A rota de logout permite que o usuário desconecte-se, invalidando o token de autenticação atual.
+
+**Endpoint**: `/api/logout`
+
+**Método**: `POST`
+
+**Cabeçalhos**: 
+ ```bash
+    Authorization: `Bearer TOKEN_GERADO_NO_LOGIN` (necessário para autenticação de logout)
+ ```
+
+## Ranking
+
+### Ranking - Listar (GET)
+A rota para retornar todos os movimentos e Recordes pessoais.
+
+**Endpoint**: `/api/ranking`
+
+**Método**: `GET`
+
+**Cabeçalhos**: 
+ ```bash
+    Authorization: `Bearer TOKEN_GERADO_NO_LOGIN` (necessário para autenticação) 
+ ```
+
+### Ranking - Detalhes de um movimento (GET)
+A rota para obter os detalhes de um movimento específico, passando o ID do movimento como parâmetro.
+
+**Endpoint**: `/api/ranking/{id}`
+
+**Método**: `GET`
+
+**Parâmetros**: 
+ ```bash
+    id: ID do movimento desejado (por exemplo, 1)
+ ```
+**Cabeçalhos**: 
+ ```bash
+    Authorization: `Bearer TOKEN_GERADO_NO_LOGIN` (necessário para autenticação) 
+ ```
+
+
+
+
+
