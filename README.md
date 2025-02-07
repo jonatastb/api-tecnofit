@@ -9,7 +9,7 @@
 
 ```bash
 git clone https://github.com/jonatastb/api-tecnofit
-cd seu-projeto
+cd api-tecnofit
 ```
 
 ### 2. Instalar as dependências do PHP
