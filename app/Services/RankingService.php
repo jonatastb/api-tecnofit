@@ -42,7 +42,7 @@ class RankingService
     return $movements->mapWithKeys(function ($movement) {
       $ranking = self::getRanking($movement);
 
-      return [$movement->name => $ranking];
+      return $ranking;
     });
   }
 }
