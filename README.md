@@ -63,8 +63,9 @@ php artisan migrate --seed
 
 ## Rodando o Projeto
 ```bash
-php artisan serve
+php artisan serve 
 ```
+**URL**: http://localhost:8000.
 
 --- 
 ## Autenticação
@@ -143,6 +144,10 @@ A rota para obter os detalhes de um movimento específico, passando o ID do movi
     Authorization: `Bearer TOKEN_GERADO_NO_LOGIN` (necessário para autenticação) 
  ```
 
+---
+## Observações finais
+
+A descrição do teste mencionava que deveríamos entregar o projeto em um estado que considerássemos pronto para produção. No meu entendimento, uma aplicação que lida com dados dos usuários precisa de um sistema de autenticação. No futuro, diversos aspectos poderiam ser aprimorados, como um login específico para que os usuários visualizem suas pontuações e a implementação de permissões mais detalhadas. No entanto, acredito que entreguei um projeto alinhado ao que foi solicitado, com algumas melhorias adicionais. Qualquer dúvida entre em contato por `jonatas.bueno@outlook.com` ou `(41) 9 8715-6232` 
 
 
 
