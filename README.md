@@ -140,6 +140,7 @@ A rota de logout permite que o usuário desconecte-se, invalidando o token de au
         "message": "Esta rota não existe ou você não tem permissao."
     }
 }
+```
 
 ## Ranking
 
