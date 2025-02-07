@@ -159,9 +159,9 @@ A rota retorna todos os movimentos e recordes pessoais.
         "Nome do Movimento": [
             {
                 "user": "string",
-                "value": integer,
+                "value": int,
                 "date": "string",
-                "position": integer
+                "position": int
             },
         ],
     },
@@ -204,9 +204,9 @@ A rota para obter os detalhes de um movimento específico, passando o ID do movi
         "Nome do Movimento": [
             {
                 "user": "string",
-                "value": integer,
+                "value": int,
                 "date": "string",
-                "position": integer
+                "position": int
             },
         ],
     },
