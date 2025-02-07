@@ -1,20 +1,8 @@
 # Ranking Tecnofit - API
 
 **Descrição**: Este é um projeto de uma API de Rankings, foi desenvolvido com Laravel 11 e SQLite. Com autenticação *sanctum* para proteger as rotas. A principal funcionalidade é exibir o ranking de usuários cadastrados no banco de dados.
-
----
-
-## Tecnologias Utilizadas
-
-- **PHP** (versão 8.x ou superior)
-- **Laravel** (versão 11.x)
-- **SQLite** (ou o banco de dados de sua escolha)
-- **Composer** (para gerenciar dependências)
-- **Node.js** (caso tenha dependências de frontend com JavaScript)
-- **Vue.js** ou **React** (dependendo do seu stack de frontend, se houver)
-
----
-
+<br>
+<br>
 ## Instalação
 
 ### 1. Clonar o repositório
@@ -29,6 +17,7 @@ cd seu-projeto
 ```bash
 composer install
 ```
+
 
 ### 3. Configuração do ambiente
 
@@ -48,18 +37,19 @@ DB_DATABASE=nome_do_banco
 DB_USERNAME=usuario
 DB_PASSWORD=senha
 ```
+
 ### 5. Gerar a chave de aplicativo
 
 ```bash
 php artisan key:generate
 ```
+
 ### 6. Executar as migrações e seeders do banco de dados
 
 ```bash
 php artisan migrate --seed
 ```
-
----
+<br>
 
 ## Rodando o Projeto
 ```bash
@@ -67,7 +57,8 @@ php artisan serve
 ```
 **URL**: http://localhost:8000.
 
---- 
+<br>
+
 ## Autenticação
 
 Escolha seu programa de testes de API preferido e insira as rotas e configurações nos headers e body(se necessário).
@@ -112,6 +103,7 @@ No seeder o admin já é criado com essas informações.
     "error": "Credenciais inválidas"
 }
 ```
+<br>
 
 ### Logout (POST)
 
@@ -141,6 +133,8 @@ A rota de logout permite que o usuário desconecte-se, invalidando o token de au
     }
 }
 ```
+
+<br>
 
 ## Ranking
 
@@ -182,6 +176,8 @@ A rota retorna todos os movimentos e recordes pessoais.
     }
 }
 ```
+
+<br>
 
 ### Ranking - Detalhes de um movimento (GET)
 A rota para obter os detalhes de um movimento específico, passando o ID do movimento como parâmetro.
@@ -226,7 +222,8 @@ A rota para obter os detalhes de um movimento específico, passando o ID do movi
 }
 ```
 
----
+<br>
+
 ## Observações finais
 
 A descrição do teste mencionava que deveríamos entregar o projeto em um estado que considerássemos pronto para produção. No meu entendimento, uma aplicação que lida com dados dos usuários precisa de um sistema de autenticação. No futuro, diversos aspectos poderiam ser aprimorados, como um login específico para que os usuários visualizem suas pontuações e a implementação de permissões mais detalhadas. No entanto, acredito que entreguei um projeto alinhado ao que foi solicitado, com algumas melhorias adicionais. Qualquer dúvida entre em contato com o desenvolvedor.
