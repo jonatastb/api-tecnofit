@@ -11,11 +11,10 @@ class AuthController extends BaseController
 {
     public function login(Request $request)
     {
-
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            $token = $user->createToken('')->plainTextToken;
-
+            $token = $user->createToken('ApiToken')->plainTextToken;
+            
             return $this->successResponse([
                 'user' => $user,
                 'token' => $token,
@@ -26,7 +25,6 @@ class AuthController extends BaseController
     }
     public function logout(Request $request)
     {
-        // Revogar o token atual
         $request->user()->tokens->each(function ($token) {
             $token->delete();
         });
